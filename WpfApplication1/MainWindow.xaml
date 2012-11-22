@@ -1,0 +1,18 @@
+﻿<Window x:Class="WpfApplication1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <DockPanel>
+        <Menu IsMainMenu="True" DockPanel.Dock="Top">
+            <MenuItem Header="Автомобили">
+                <MenuItem Header="Добавить" Name="AddCarMenuItem" Click="AddCarMenuItem_OnClick"/>
+                <MenuItem Header="Удалить"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <StackPanel DockPanel.Dock="Left">
+            <Label Content="Отслеживаемые авто:"></Label>
+        </StackPanel>
+        <ListBox DockPanel.Dock="Right">
+        </ListBox>
+    </DockPanel>
+</Window>
