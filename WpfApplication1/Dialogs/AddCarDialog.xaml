@@ -18,7 +18,7 @@
         <Label Grid.Column ="0" Grid.Row="1"  Content="Модель:" Margin="15,10,15,10"></Label>
         <ComboBox Name="MarkComboBox" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Margin="15,10,15,10"/>
         <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Margin="15,10,15,10" Padding="3" IsDefault="True">Ok</Button>
+            <Button Margin="15,10,15,10" Padding="3" IsDefault="True" Click="OnClick">Ok</Button>
             <Button Margin="15,10,15,10" Padding="3" IsCancel="True">Close</Button>
         </StackPanel>
     </Grid>

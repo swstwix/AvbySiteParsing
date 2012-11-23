@@ -44,5 +44,16 @@ namespace WpfApplication1.Dialogs
             }
         }
 
+        private void OnClick(object sender, RoutedEventArgs e)
+        {
+            if (BrandComboBox.SelectedItem != null)
+                if (MarkComboBox.SelectedItem != null)
+                {
+                    MessageBox.Show("OK");
+                    return;
+                }
+            MessageBox.Show("Select!");
+        }
+
     }
 }
