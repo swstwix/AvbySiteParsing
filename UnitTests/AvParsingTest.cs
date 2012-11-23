@@ -12,9 +12,15 @@ namespace UnitTests
     public class AvParsingTest
     {
         [Test]
-        public void AlfaRomeoDataExists()
+        public void UralDataExists()
         {
             CollectionAssert.Contains(AvParser.Brands(), new KeyValuePair<string, int>("Урал", 1569));
+        }
+
+        [Test]
+        public void AlfaRomeoModelsDataExists()
+        {
+            CollectionAssert.Contains(AvParser.Models("Alfa Romeo"), new KeyValuePair<string, int>("146", 3));
         }
     }
 }
