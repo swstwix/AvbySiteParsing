@@ -37,8 +37,6 @@ namespace WpfApplication1.Static
 
         public static IDictionary<string, int> Models(string brandName)
         {
-            if (Brands()[brandName] == null)
-                throw new ArgumentException("brandName");
             var client = new WebClient();
             IDictionary<string, int> models = new Dictionary<string,int>(); 
             var page = client.DownloadString(string.Format(avModelPattern, Brands()[brandName]));

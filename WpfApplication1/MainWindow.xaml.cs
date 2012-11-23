@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfApplication1.Dialogs;
+using WpfApplication1.Static;
 
 namespace WpfApplication1
 {
@@ -31,7 +33,7 @@ namespace WpfApplication1
             var dialog = new AddCarDialog {Owner = this};
             bool? res = dialog.ShowDialog();
             if (res.HasValue && res.Value)
-                MessageBox.Show("Ok");
+                MessageBox.Show(String.Format("{0},{1}", dialog.BrandId, dialog.ModelId));
             else
                 MessageBox.Show("Fail");
         }
