@@ -5,14 +5,17 @@
     <DockPanel>
         <Menu IsMainMenu="True" DockPanel.Dock="Top">
             <MenuItem Header="Автомобили">
-                <MenuItem Header="Добавить" Name="AddCarMenuItem" Click="AddCarMenuItem_OnClick"/>
+                <MenuItem Header="Добавить" Name="AddCarMenuItem" Click="AddCarMenuItem_OnClick" />
                 <MenuItem Header="Удалить"></MenuItem>
             </MenuItem>
         </Menu>
         <StackPanel DockPanel.Dock="Left">
             <Label Content="Отслеживаемые авто:"></Label>
+            <ListBox Name="EyedModels"></ListBox>
         </StackPanel>
-        <ListBox DockPanel.Dock="Right">
-        </ListBox>
+        <DockPanel DockPanel.Dock="Right">
+            <ListBox DockPanel.Dock="Left"></ListBox>
+            <Grid DockPanel.Dock="Left"></Grid>
+        </DockPanel>
     </DockPanel>
 </Window>

@@ -12,12 +12,12 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Label Grid.Column ="0" Grid.Row="0"  Content="Марка:" Margin="15,10,15,10"></Label>
+        <Label Grid.Column="0" Grid.Row="0" Content="Марка:" Margin="15,10,15,10"></Label>
         <ComboBox Name="BrandComboBox" Grid.Column="1" Grid.Row="0" Margin="15,10,15,10"
-                  SelectionChanged="BrandComboBox_OnSelectionChanged"/>
-        <Label Grid.Column ="0" Grid.Row="1"  Content="Модель:" Margin="15,10,15,10"></Label>
-        <Label Name="CompleteLabel" Grid.Column ="0" Grid.Row="2"  Content="Wait..."  Margin="15,10,15,10"></Label>
-        <ComboBox Name="ModelComboBox" Grid.Column="1" Grid.Row="1" Margin="15,10,15,10"/>
+                  SelectionChanged="BrandComboBox_OnSelectionChanged" />
+        <Label Grid.Column="0" Grid.Row="1" Content="Модель:" Margin="15,10,15,10"></Label>
+        <Label Name="CompleteLabel" Grid.Column="0" Grid.Row="2" Content="Wait..." Margin="15,10,15,10"></Label>
+        <ComboBox Name="ModelComboBox" Grid.Column="1" Grid.Row="1" Margin="15,10,15,10" />
         <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Width="124">
             <Button Margin="15,10,15,10" Padding="3" IsDefault="True" Click="OnClick">Ok</Button>
             <Button Margin="15,10,15,10" Padding="3" IsCancel="True">Close</Button>

@@ -1,28 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using WpfApplication1.Static;
 
 namespace WpfApplication1.Dialogs
 {
     /// <summary>
-    /// Логика взаимодействия для AddCarDialog.xaml
+    ///     Логика взаимодействия для AddCarDialog.xaml
     /// </summary>
     public partial class AddCarDialog : Window
     {
         public int BrandId;
         public int ModelId;
+        public string Brand;
+        public string Model;
         private IDictionary<string, int> brands;
         private IDictionary<string, int> models;
 
@@ -30,7 +23,6 @@ namespace WpfApplication1.Dialogs
         {
             InitializeComponent();
             ThreadPool.QueueUserWorkItem(LoadBrandData);
-
         }
 
         public void LoadBrandData(object obj)
@@ -84,13 +76,14 @@ namespace WpfApplication1.Dialogs
             if (BrandComboBox.SelectedItem != null)
                 if (ModelComboBox.SelectedItem != null)
                 {
-                    BrandId = brands[BrandComboBox.SelectedItem.ToString()];
-                    ModelId = models[ModelComboBox.SelectedItem.ToString()];
-                    this.DialogResult = true;
+                    Brand = BrandComboBox.SelectedItem.ToString();
+                    Model = ModelComboBox.SelectedItem.ToString();
+                    BrandId = brands[Brand];
+                    ModelId = models[Model];
+                    DialogResult = true;
                     return;
                 }
-            this.DialogResult = false;
+            DialogResult = false;
         }
-
     }
 }
