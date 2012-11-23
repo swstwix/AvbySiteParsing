@@ -9,13 +9,13 @@
                 <MenuItem Header="Удалить"></MenuItem>
             </MenuItem>
         </Menu>
-        <StackPanel DockPanel.Dock="Left">
+        <StackPanel DockPanel.Dock="Left" Width="151">
             <Label Content="Отслеживаемые авто:"></Label>
-            <ListBox Name="EyedModels"></ListBox>
+            <ListBox Name="EyedModels" SelectionChanged="EyedModels_OnSelectionChanged"></ListBox>
         </StackPanel>
         <DockPanel DockPanel.Dock="Right">
-            <ListBox DockPanel.Dock="Left"></ListBox>
-            <Grid DockPanel.Dock="Left"></Grid>
+            <ListBox Name="SellingCars" DockPanel.Dock="Left" Width="201" ></ListBox>
+            <Grid DockPanel.Dock="Right"></Grid>
         </DockPanel>
     </DockPanel>
 </Window>

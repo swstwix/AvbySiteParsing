@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using WpfApplication1.Static;
 
@@ -24,6 +25,13 @@ namespace UnitTests
         public void UralDataExists()
         {
             CollectionAssert.Contains(AvParser.Brands(), new KeyValuePair<string, int>("Урал", 1569));
+        }
+
+        [TestCase("Alfa Romeo", "145", Result = 9)]
+        [TestCase("Audi", "100", Result = 328)]
+        public int PageCorrectData(string brandName, string modelName)
+        {
+            return AvParser.Selling(brandName, modelName).Count();
         }
     }
 }

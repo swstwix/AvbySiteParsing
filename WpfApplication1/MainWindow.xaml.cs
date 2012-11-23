@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 using WpfApplication1.Dialogs;
+using WpfApplication1.Static;
 
 namespace WpfApplication1
 {
@@ -19,9 +21,16 @@ namespace WpfApplication1
             var dialog = new AddCarDialog {Owner = this};
             bool? res = dialog.ShowDialog();
             if (res.HasValue && res.Value)
-                EyedModels.Items.Add(String.Format("{0}:{1}", dialog.Brand, dialog.Model));
-            else
-                MessageBox.Show("Fail");
+                EyedModels.Items.Add(dialog.ModelDetails);
+        }
+
+        private void EyedModels_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selected = (ModelDetails) e.AddedItems[0];
+            var cars = AvParser.Selling(selected.Brand, selected.Model);
+            SellingCars.Items.Clear();
+            foreach (var car in cars)
+                SellingCars.Items.Add(car);
         }
     }
 }

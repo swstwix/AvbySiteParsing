@@ -12,10 +12,7 @@ namespace WpfApplication1.Dialogs
     /// </summary>
     public partial class AddCarDialog : Window
     {
-        public int BrandId;
-        public int ModelId;
-        public string Brand;
-        public string Model;
+        public ModelDetails ModelDetails;
         private IDictionary<string, int> brands;
         private IDictionary<string, int> models;
 
@@ -76,10 +73,14 @@ namespace WpfApplication1.Dialogs
             if (BrandComboBox.SelectedItem != null)
                 if (ModelComboBox.SelectedItem != null)
                 {
-                    Brand = BrandComboBox.SelectedItem.ToString();
-                    Model = ModelComboBox.SelectedItem.ToString();
-                    BrandId = brands[Brand];
-                    ModelId = models[Model];
+                    ModelDetails = new ModelDetails()
+                        {
+                            Brand = BrandComboBox.SelectedItem.ToString(),
+                            Model = ModelComboBox.SelectedItem.ToString(),
+                            BrandId = brands[BrandComboBox.SelectedItem.ToString()],
+                            ModelId = models[ModelComboBox.SelectedItem.ToString()],
+                        };
+                    ModelDetails.Count = AvParser.CountPages(ModelDetails.BrandId, ModelDetails.ModelId);
                     DialogResult = true;
                     return;
                 }

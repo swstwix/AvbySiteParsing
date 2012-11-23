@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Net;
 using System.Text.RegularExpressions;
 
@@ -7,9 +8,14 @@ namespace WpfApplication1.Static
     public class AvParser
     {
         private const string avUrl = "http://av.by";
-
         private const string avModelPattern =
             "http://av.by/public/search.php?event=Search&category_parent%5B0%5D={0}&category_id%5B0%5D=0&year_id=0&year_id_max=0&engine_type_id2=1&engine_type_all=1&body_type_id=0&transmission_id=0&price_value=0&price_value_max=0&currency_id=0&country_id=0&city_id2=0&order_id=0&submit_presearch=%CF%EE%EA%E0%E7%E0%F2%FC%3A+9";
+
+        private const string avSellingPattern =
+            "http://av.by/public/search.php?event=Search&category_parent%5B0%5D={0}&category_id%5B0%5D={1}&year_id=0&year_id_max=0&engine_type_id2=1&engine_type_all=1&body_type_id=0&transmission_id=0&price_value=0&price_value_max=0&currency_id=0&country_id=0&city_id2=0&order_id=0&submit_presearch=%CF%EE%EA%E0%E7%E0%F2%FC%3A+9&page={2}";
+
+        private const string avCountTemplate =
+            "http://av.by/public/parameters.php?event=Number_PreSearch&category_parent[0]={0}&category_id[0]={1}";
 
         private static IDictionary<string, int> brands;
 
@@ -49,6 +55,64 @@ namespace WpfApplication1.Static
                                                          int.Parse(matches[i].Groups["value"].Value)));
             }
             return models;
+        }
+
+        public static CarDetails[] Selling(string brand, string model)
+        {
+            var brandId = Brands()[brand];
+            var modelId = Models(brand)[model];
+            var list = new List<CarDetails>();
+            var currentPage = 1;
+            var countPages = CountPages(brandId, modelId);
+
+            do
+            {
+                var carDetails = GetCarDetailsByUrl(string.Format(avSellingPattern, brandId, modelId, currentPage));
+                list.AddRange(carDetails);
+                currentPage++;
+            } while(list.Count < countPages);
+
+            return list.ToArray();
+        }
+
+        public static int CountPages(int brandId, int countId)
+        {
+            var client = new WebClient();
+            var page = client.DownloadString(string.Format(avCountTemplate, brandId, countId));
+            return int.Parse(page);
+        }
+
+        private static IEnumerable<CarDetails> GetCarDetailsByUrl(string url)
+        {
+            var list = new List<CarDetails>();
+            var client = new WebClient();
+            var html = client.DownloadString(url);
+
+            var count = ParsingRegexHelper.Count(html);
+
+            var names = ParsingRegexHelper.Names(html);
+            var brands = ParsingRegexHelper.Brands(html);
+            var titles = ParsingRegexHelper.Titles(html);
+            var hrefs = ParsingRegexHelper.Hrefs(html);
+            var years = ParsingRegexHelper.Years(html);
+            var volumes = ParsingRegexHelper.Volumes(html);
+            var prices = ParsingRegexHelper.Prices(html);
+            var kmAges = ParsingRegexHelper.KmAges(html);
+
+            for (int i = 0; i < count; i++)
+                list.Add(new CarDetails()
+                {
+                    Brand = brands[i],
+                    Name = names[i],
+                    Year = years[i],
+                    Volume = volumes[i],
+                    KmAge = kmAges[i],
+                    Price = prices[i],
+                    Href = hrefs[i],
+                    Title = titles[i]
+                });
+
+            return list;
         }
     }
 }
