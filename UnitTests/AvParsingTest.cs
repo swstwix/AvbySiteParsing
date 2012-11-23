@@ -22,5 +22,11 @@ namespace UnitTests
         {
             CollectionAssert.Contains(AvParser.Models("Alfa Romeo"), new KeyValuePair<string, int>("146", 3));
         }
+
+        [Test]
+        public void BmwModelsDataExists()
+        {
+            CollectionAssert.Contains(AvParser.Models("BMW"), new KeyValuePair<string, int>("3-reihe (E36 Touring)", 1666));
+        }
     }
 }

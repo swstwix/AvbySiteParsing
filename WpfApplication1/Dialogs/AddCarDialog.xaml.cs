@@ -36,9 +36,12 @@ namespace WpfApplication1.Dialogs
 
         private void BrandComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var str = e.AddedItems[0].ToString();
-            var id = AvParser.Brands()[str];
-            MessageBox.Show(str + " : " + id);
+            var brand = e.AddedItems[0].ToString();
+            MarkComboBox.Items.Clear();
+            foreach(var pair in AvParser.Models(brand))
+            {
+                MarkComboBox.Items.Add(pair.Key);
+            }
         }
 
     }
