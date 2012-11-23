@@ -49,10 +49,8 @@ namespace WpfApplication1.Dialogs
             if (BrandComboBox.SelectedItem != null)
                 if (MarkComboBox.SelectedItem != null)
                 {
-                    MessageBox.Show("OK");
-                    return;
+                    this.DialogResult = true;
                 }
-            MessageBox.Show("Select!");
         }
 
     }

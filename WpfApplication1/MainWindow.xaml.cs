@@ -29,7 +29,11 @@ namespace WpfApplication1
         private void AddCarMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
             var dialog = new AddCarDialog {Owner = this};
-            dialog.ShowDialog();
+            bool? res = dialog.ShowDialog();
+            if (res.HasValue && res.Value)
+                MessageBox.Show("Ok");
+            else
+                MessageBox.Show("Fail");
         }
     }
 }
