@@ -14,6 +14,8 @@ namespace WpfApplication1.Static
         public string Model { get; set; }
         public int Count { get; set; }
 
+        public CarDetails[] Cars { get; set; }
+
         public override string ToString()
         {
             return string.Format("{0} {1}({2})", Brand, Model, Count);

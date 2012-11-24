@@ -53,10 +53,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CustomControls\SellingCarDetails.xaml.cs">
+      <DependentUpon>SellingCarDetails.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Static\AvParser.cs" />
     <Compile Include="Static\CarDetails.cs" />
     <Compile Include="Static\ModelDetails.cs" />
     <Compile Include="Static\ParsingRegexHelper.cs" />
+    <Page Include="CustomControls\SellingCarDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dialogs\AddCarDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

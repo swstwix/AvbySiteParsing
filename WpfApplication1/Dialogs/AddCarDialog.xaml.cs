@@ -34,14 +34,7 @@ namespace WpfApplication1.Dialogs
         {
             CompleteLabel.Dispatcher.BeginInvoke(new Action(LoadStarted));
             models = AvParser.Models(obj.ToString());
-            BrandComboBox.Dispatcher.BeginInvoke(new Action(delegate
-                {
-                    ModelComboBox.Items.Clear();
-                    foreach (var pair in models)
-                    {
-                        ModelComboBox.Items.Add(pair.Key);
-                    }
-                }));
+            BrandComboBox.Dispatcher.BeginInvoke(new Action<IDictionary<string,int>>(InitializeModelComboBox), models);
             CompleteLabel.Dispatcher.BeginInvoke(new Action(LoadComplited));
         }
 
@@ -60,6 +53,15 @@ namespace WpfApplication1.Dialogs
             foreach (var pair in AvParser.Brands())
             {
                 BrandComboBox.Items.Add(pair.Key);
+            }
+        }
+
+        private void InitializeModelComboBox(IDictionary<string, int> models )
+        {
+            ModelComboBox.Items.Clear();
+            foreach (var pair in models)
+            {
+                ModelComboBox.Items.Add(pair.Key);
             }
         }
 

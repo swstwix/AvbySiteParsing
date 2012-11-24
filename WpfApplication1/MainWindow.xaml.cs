@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using WpfApplication1.CustomControls;
 using WpfApplication1.Dialogs;
 using WpfApplication1.Static;
 
@@ -14,6 +16,10 @@ namespace WpfApplication1
         public MainWindow()
         {
             InitializeComponent();
+            ThreadPool.QueueUserWorkItem(delegate(Object state)
+                {
+                    var x = AvParser.Brands();
+                });
         }
 
         private void AddCarMenuItem_OnClick(object sender, RoutedEventArgs e)
@@ -27,10 +33,20 @@ namespace WpfApplication1
         private void EyedModels_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var selected = (ModelDetails) e.AddedItems[0];
-            var cars = AvParser.Selling(selected.Brand, selected.Model);
+            if (selected.Cars == null)
+                selected.Cars = AvParser.Selling(selected.Brand, selected.Model);
             SellingCars.Items.Clear();
-            foreach (var car in cars)
+            foreach (var car in selected.Cars)
                 SellingCars.Items.Add(car);
+        }
+
+        private void SellingCars_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count != 0)
+            {
+                CarDetails.Children.Clear();
+                CarDetails.Children.Add(new SellingCarDetails((CarDetails)e.AddedItems[0]));
+            }
         }
     }
 }
