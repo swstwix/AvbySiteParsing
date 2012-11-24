@@ -22,13 +22,21 @@ namespace UnitTests
         }
 
         [Test]
+        public void MazdaMoeldDataExists()
+        {
+            CollectionAssert.Contains(AvParser.Models("Mazda"),
+                                      new KeyValuePair<string, int>("323", 638));
+        }
+
+        [Test]
         public void UralDataExists()
         {
             CollectionAssert.Contains(AvParser.Brands(), new KeyValuePair<string, int>("Урал", 1569));
         }
 
         [TestCase("Alfa Romeo", "145", Result = 9)]
-        [TestCase("Audi", "100", Result = 328)]
+        [TestCase("Audi", "100", Result = 339)]
+        [TestCase("Mazda", "323", Result = 170)]
         public int PageCorrectData(string brandName, string modelName)
         {
             return AvParser.Selling(brandName, modelName).Count();
