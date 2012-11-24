@@ -98,6 +98,7 @@ namespace WpfApplication1.Static
             var volumes = ParsingRegexHelper.Volumes(html);
             var prices = ParsingRegexHelper.Prices(html);
             var kmAges = ParsingRegexHelper.KmAges(html);
+            var imageHrefs = ParsingRegexHelper.ImageHrefs(html);
 
             for (int i = 0; i < count; i++)
                 list.Add(new CarDetails()
@@ -109,7 +110,8 @@ namespace WpfApplication1.Static
                     KmAge = kmAges[i],
                     Price = prices[i],
                     Href = hrefs[i],
-                    Title = titles[i]
+                    Title = titles[i],
+                    ImageHref = imageHrefs[i]
                 });
 
             return list;

@@ -112,5 +112,14 @@ namespace WpfApplication1.Static
             }
             return list.ToArray();
         }
+
+        public static string[] ImageHrefs(string html)
+        {
+            var matches = Regex.Matches(html, @"http://static.av.by/public[^""]+.jpg");
+            var list = new List<string>();
+            for (int i = 0; i < matches.Count; i++)
+                list.Add(matches[i].ToString());
+            return list.ToArray();
+        }
     }
 }

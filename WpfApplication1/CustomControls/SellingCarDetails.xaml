@@ -8,25 +8,22 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Grid.ColumnSpan="2" Content="{Binding Title}"></Label>
-        <Label Grid.Row="1" Grid.Column="0" Content="Цена, $"/>
-        <Label Grid.Row="1" Grid.Column="1" Content="{Binding Price}"/>
-        <Label Grid.Row="2" Grid.Column="0" Content="Объем"/>
-        <Label Grid.Row="2" Grid.Column="1" Content="{Binding Volume}"/>
-        <Label Grid.Row="3" Grid.Column="0" Content="Пробег"/>
-        <Label Grid.Row="3" Grid.Column="1" Content="{Binding KmAge}"/>
+        <Image Grid.Row="1" Grid.ColumnSpan="2" Source="{Binding ImageHref}"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="Цена, $"/>
+        <Label Grid.Row="2" Grid.Column="1" Content="{Binding Price}"/>
+        <Label Grid.Row="3" Grid.Column="0" Content="Объем"/>
+        <Label Grid.Row="3" Grid.Column="1" Content="{Binding Volume}"/>
+        <Label Grid.Row="4" Grid.Column="0" Content="Пробег"/>
+        <Label Grid.Row="4" Grid.Column="1" Content="{Binding KmAge}"/>
     </Grid>
 </UserControl>

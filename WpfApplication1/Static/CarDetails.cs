@@ -17,6 +17,8 @@ namespace WpfApplication1.Static
         public int KmAge { get; set; }
         public int Year { get; set; }
 
+        public string ImageHref { get; set; }
+
         public override string ToString()
         {
             return Title;

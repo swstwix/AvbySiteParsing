@@ -33,5 +33,13 @@ namespace UnitTests
         {
             return AvParser.Selling(brandName, modelName).Count();
         }
+
+        [Test]
+        public void TestImageUrl()
+        {
+            var car = AvParser.Selling("Alfa Romeo", "145").First();
+            Assert.AreEqual("http://static.av.by/public/public_image_icon/003/79/33/public_3793365_1i_7add9c38b879.jpg",
+                            car.ImageHref);
+        }
     }
 }
