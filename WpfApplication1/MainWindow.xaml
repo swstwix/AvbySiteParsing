@@ -8,12 +8,15 @@
                 <MenuItem Header="Добавить" Name="AddCarMenuItem" Click="AddCarMenuItem_OnClick" />
                 <MenuItem Header="Удалить"></MenuItem>
             </MenuItem>
+            <MenuItem Header="Данные">
+                <MenuItem Header="Обновить"></MenuItem>
+            </MenuItem>
         </Menu>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200*" MinWidth="200"></ColumnDefinition>
-                <ColumnDefinition Width="200*" MinWidth="200"></ColumnDefinition>
-                <ColumnDefinition Width="200*" MinWidth="200"></ColumnDefinition>
+                <ColumnDefinition Width="200*" MinWidth="150"></ColumnDefinition>
+                <ColumnDefinition Width="200*" MinWidth="150"></ColumnDefinition>
+                <ColumnDefinition Width="200*" MinWidth="150"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
                 <Label Content="Отслеживаемые авто:"></Label>
