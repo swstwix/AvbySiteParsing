@@ -9,7 +9,7 @@
                 <MenuItem Header="Удалить"></MenuItem>
             </MenuItem>
             <MenuItem Header="Данные">
-                <MenuItem Header="Обновить"></MenuItem>
+                <MenuItem Header="Обновить" Name="RefreshMenuItem" Click="RefreshMenuItem_OnClick"></MenuItem>
             </MenuItem>
         </Menu>
         <Grid>
@@ -23,7 +23,13 @@
                 <ListBox Name="EyedModels" BorderThickness="0" SelectionChanged="EyedModels_OnSelectionChanged"></ListBox>
             </StackPanel>
             <GridSplitter Grid.Column="0" Background="Black" VerticalAlignment="Stretch" Width="5"></GridSplitter>
-            <ListBox Grid.Column="1" Name="SellingCars" BorderThickness="0" SelectionChanged="SellingCars_OnSelectionChanged"></ListBox>
+            <ListBox Grid.Column="1" Name="SellingCars" BorderThickness="0" SelectionChanged="SellingCars_OnSelectionChanged">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Background" Value="{Binding Color}"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
             <GridSplitter Grid.Column="1" Background="Black" VerticalAlignment="Stretch" Width="5"></GridSplitter>
             <StackPanel Grid.Column ="2" Name="CarDetails">
                 

@@ -46,9 +46,7 @@ namespace WpfApplication1
 
         private void EyedModelsInitListBox(ModelDetails selected)
         {
-            SellingCars.Items.Clear();
-            foreach (var car in selected.Cars)
-                SellingCars.Items.Add(car);
+            SellingCars.ItemsSource = selected.Cars;
         }
 
         private void SellingCars_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -57,6 +55,16 @@ namespace WpfApplication1
             {
                 CarDetails.Children.Clear();
                 CarDetails.Children.Add(new SellingCarDetails((CarDetails)e.AddedItems[0]));
+            }
+        }
+
+        private void RefreshMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            foreach (var selling in EyedModels.Items)
+            {
+                var sell = (ModelDetails) selling;
+                AvParser.MergeTo(sell);
+                EyedModelsInitListBox(sell);
             }
         }
     }

@@ -58,6 +58,7 @@
     </Compile>
     <Compile Include="Static\AvParser.cs" />
     <Compile Include="Static\CarDetails.cs" />
+    <Compile Include="Static\CarState.cs" />
     <Compile Include="Static\ModelDetails.cs" />
     <Compile Include="Static\ParsingRegexHelper.cs" />
     <Page Include="CustomControls\SellingCarDetails.xaml">

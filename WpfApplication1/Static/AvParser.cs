@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 
@@ -108,13 +109,63 @@ namespace WpfApplication1.Static
                     Year = years[i],
                     Volume = volumes[i],
                     KmAge = kmAges[i],
-                    Price = prices[i],
                     Href = hrefs[i],
                     Title = titles[i],
-                    ImageHref = imageHrefs[i]
+                    ImageHref = imageHrefs[i],
+                    State = CarState.New,
+                    PricesHistrory = new List<int>(){prices[i]}
                 });
 
             return list;
+        }
+
+        public static void MergeTo(ModelDetails sell)
+        {
+            sell.Cars = sell.Cars.Where(x => x.State != CarState.Deleted).ToArray();
+
+            var newSelling = Selling(sell.Brand, sell.Model);
+
+            //// Test Green
+            /*var l1 = newSelling.ToList();
+            l1.Add(new CarDetails(){Title = "Hellop", Href = "fedos", PricesHistrory = new List<int>(){3}});
+            newSelling = l1.ToArray();*/
+
+            //// Test Yellow
+            /*newSelling[0].PricesHistrory.RemoveAll(x => true);
+            newSelling[0].PricesHistrory.Add(1234);*/
+
+            //// Test Red
+            /*var l = newSelling.ToList();
+            l.RemoveAt(1);
+            newSelling = l.ToArray();*/
+
+            var previosCarsData = sell.Cars.ToDictionary(x => x.Href, y=> y);
+            var newCarsData = newSelling.ToDictionary(x => x.Href, y => y);
+            
+            var newSell = from x in newSelling
+                            where !previosCarsData.ContainsKey(x.Href)
+                            select x;
+            var priceUpdatedSell =  from x in newSelling
+                                        where previosCarsData.ContainsKey(x.Href) && previosCarsData[x.Href].Price != x.Price
+                                        select previosCarsData[x.Href];
+            var deletedNewCell =    from x in sell.Cars
+                                        where !newCarsData.ContainsKey(x.Href)
+                                        select x;
+
+            foreach (var car in sell.Cars)
+                car.State = CarState.NotUpdated;
+            foreach (var car in priceUpdatedSell)
+            {
+                car.PricesHistrory.Add(newCarsData[car.Href].Price);
+                car.State = CarState.Updated;
+            }
+            foreach (var car in deletedNewCell)
+            {
+                car.State = CarState.Deleted;
+            }
+            var newArray = newSell.ToList();
+            newArray.AddRange(sell.Cars);
+            sell.Cars = newArray.ToArray();
         }
     }
 }
