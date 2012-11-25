@@ -29,5 +29,10 @@ namespace WpfApplication1.CustomControls
             this.DataContext = car;
             InitializeComponent();
         }
+
+        private void UIElement_OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            System.Diagnostics.Process.Start(Hyperlink.NavigateUri.ToString());
+        }
     }
 }

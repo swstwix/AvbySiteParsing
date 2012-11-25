@@ -19,8 +19,8 @@
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Grid.ColumnSpan="2" Content="{Binding Title}"></Label>
         <TextBlock Grid.Row="1" Grid.Column="1">
-            <Hyperlink NavigateUri="{Binding Href}" TextDecorations="None">
-                <Image Source="{Binding ImageHref}"/>
+            <Hyperlink Name="Hyperlink" NavigateUri="{Binding Href}" TextDecorations="None">
+                <Image Source="{Binding ImageHref}" MouseDown="UIElement_OnMouseDown"/>
             </Hyperlink>
         </TextBlock>
         <Label Grid.Row="2" Grid.Column="0" Content="Цена, $"/>
