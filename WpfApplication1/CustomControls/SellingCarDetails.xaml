@@ -12,6 +12,7 @@
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50"></ColumnDefinition>
@@ -29,5 +30,7 @@
         <Label Grid.Row="3" Grid.Column="1" Content="{Binding Volume}"/>
         <Label Grid.Row="4" Grid.Column="0" Content="Пробег"/>
         <Label Grid.Row="4" Grid.Column="1" Content="{Binding KmAge}"/>
+        <Label Grid.Row="5" Grid.Column="0" Content="Цены"/>
+        <ListView Grid.Row="5" Grid.Column="1" ItemsSource="{Binding PricesHistrory}"/>
     </Grid>
 </UserControl>

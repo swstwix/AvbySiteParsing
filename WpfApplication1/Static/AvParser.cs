@@ -131,13 +131,13 @@ namespace WpfApplication1.Static
             newSelling = l1.ToArray();*/
 
             //// Test Yellow
-            /*newSelling[0].PricesHistrory.RemoveAll(x => true);
-            newSelling[0].PricesHistrory.Add(1234);*/
+            //newSelling[0].PricesHistrory.RemoveAll(x => true);
+            //newSelling[0].PricesHistrory.Add(1234);
 
             //// Test Red
-            /*var l = newSelling.ToList();
-            l.RemoveAt(1);
-            newSelling = l.ToArray();*/
+            //var l = newSelling.ToList();
+            //l.RemoveAt(1);
+            //newSelling = l.ToArray();
 
             var previosCarsData = sell.Cars.ToDictionary(x => x.Href, y=> y);
             var newCarsData = newSelling.ToDictionary(x => x.Href, y => y);
@@ -166,6 +166,7 @@ namespace WpfApplication1.Static
             var newArray = newSell.ToList();
             newArray.AddRange(sell.Cars);
             sell.Cars = newArray.ToArray();
+            sell.Count = sell.Cars.Length;
         }
     }
 }

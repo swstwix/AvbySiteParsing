@@ -67,8 +67,8 @@ namespace WpfApplication1
             {
                 var sell = (ModelDetails) selling;
                 AvParser.MergeTo(sell);
-                sell.Count = sell.Cars.Length;
                 EyedModelsInitListBox(sell);
+                EyedModels.Items.Refresh();
             }
         }
     }
