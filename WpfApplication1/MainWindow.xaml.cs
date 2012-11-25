@@ -27,7 +27,10 @@ namespace WpfApplication1
             var dialog = new AddCarDialog {Owner = this};
             bool? res = dialog.ShowDialog();
             if (res.HasValue && res.Value)
+            {
                 EyedModels.Items.Add(dialog.ModelDetails);
+                EyedModels.SelectedItem = dialog.ModelDetails;
+            }
         }
 
         private void EyedModels_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
