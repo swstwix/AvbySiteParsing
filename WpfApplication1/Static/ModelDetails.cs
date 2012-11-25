@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace WpfApplication1.Static
 {
+    [Serializable]
     public class ModelDetails
     {
         public int BrandId { get; set; }

@@ -7,6 +7,7 @@ using System.Windows.Media;
 
 namespace WpfApplication1.Static
 {
+    [Serializable]
     public class CarDetails
     {
         #region Av.by data

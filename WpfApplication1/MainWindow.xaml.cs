@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using WpfApplication1.CustomControls;
 using WpfApplication1.Dialogs;
 using WpfApplication1.Static;
+using WpfApplication1.Serializer;
 
 namespace WpfApplication1
 {
@@ -19,6 +23,22 @@ namespace WpfApplication1
             ThreadPool.QueueUserWorkItem(delegate(Object state)
                 {
                     var x = AvParser.Brands();
+                });
+            ThreadPool.QueueUserWorkItem(delegate(Object state)
+                {
+                    try
+                    {
+                        var serializer = new Serializer<List<ModelDetails>>();
+                        var obj = serializer.DeSerializeObject("cars.dat");
+                        EyedModels.Dispatcher.BeginInvoke(new Action(delegate
+                            {
+                                EyedModels.ItemsSource = obj;
+                            }));
+                    }
+                    catch
+                    {
+                        return;
+                    }
                 });
         }
 
@@ -70,6 +90,16 @@ namespace WpfApplication1
                 EyedModelsInitListBox(sell);
                 EyedModels.Items.Refresh();
             }
+        }
+
+        private void MainWindow_OnClosing(object sender, CancelEventArgs e)
+        {
+            var obj = EyedModels.Items;
+            var list = new List<ModelDetails>();
+            foreach (var item in EyedModels.Items)
+                list.Add((ModelDetails)item);
+            var serializer = new Serializer<List<ModelDetails>>();
+            serializer.SerializeObject("cars.dat", list);
         }
     }
 }
