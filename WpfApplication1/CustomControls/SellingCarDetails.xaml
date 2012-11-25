@@ -8,7 +8,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
@@ -18,7 +18,7 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Grid.ColumnSpan="2" Content="{Binding Title}"></Label>
-        <TextBlock Grid.Row="1" Grid.ColumnSpan="2">
+        <TextBlock Grid.Row="1" Grid.Column="1">
             <Hyperlink NavigateUri="{Binding Href}" TextDecorations="None">
                 <Image Source="{Binding ImageHref}"/>
             </Hyperlink>

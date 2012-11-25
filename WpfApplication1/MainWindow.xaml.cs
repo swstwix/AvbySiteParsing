@@ -33,8 +33,19 @@ namespace WpfApplication1
         private void EyedModels_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var selected = (ModelDetails) e.AddedItems[0];
+            ThreadPool.QueueUserWorkItem(LoadSellingForModel, selected);
+        }
+
+        private void LoadSellingForModel(object obj)
+        {
+            var selected = (ModelDetails) obj;
             if (selected.Cars == null)
                 selected.Cars = AvParser.Selling(selected.Brand, selected.Model);
+            SellingCars.Dispatcher.BeginInvoke(new Action<ModelDetails>(EyedModelsInitListBox), selected);
+        }
+
+        private void EyedModelsInitListBox(ModelDetails selected)
+        {
             SellingCars.Items.Clear();
             foreach (var car in selected.Cars)
                 SellingCars.Items.Add(car);
