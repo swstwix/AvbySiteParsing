@@ -56,6 +56,9 @@
     <Compile Include="CustomControls\SellingCarDetails.xaml.cs">
       <DependentUpon>SellingCarDetails.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\RemoveCarDialog.xaml.cs">
+      <DependentUpon>RemoveCarDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Serializer\Serizlizer.cs" />
     <Compile Include="Static\AvParser.cs" />
     <Compile Include="Static\CarDetails.cs" />
@@ -67,6 +70,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\AddCarDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\RemoveCarDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

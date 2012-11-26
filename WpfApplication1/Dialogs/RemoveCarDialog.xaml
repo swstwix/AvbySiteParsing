@@ -1,0 +1,11 @@
+﻿<Window x:Class="WpfApplication1.Dialogs.RemoveCarDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="RemoveCarDialog" Height="200" Width="200">
+    <Grid>
+        <Button Content="Отменить" HorizontalAlignment="Left" Margin="107,138,0,0" VerticalAlignment="Top" Width="75" IsCancel="True"/>
+        <Button Content="Ок" HorizontalAlignment="Left" Margin="10,138,0,0" VerticalAlignment="Top" Width="75" IsDefault="True" Click="Button_Click_1"/>
+        <ComboBox Name="CarComboBox" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="172"/>
+
+    </Grid>
+</Window>

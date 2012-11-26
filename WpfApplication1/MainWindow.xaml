@@ -7,7 +7,7 @@
         <Menu IsMainMenu="True" DockPanel.Dock="Top">
             <MenuItem Header="Автомобили">
                 <MenuItem Header="Добавить" Name="AddCarMenuItem" Click="AddCarMenuItem_OnClick" />
-                <MenuItem Header="Удалить"></MenuItem>
+                <MenuItem Header="Удалить" Name="RemoveCar" Click="RemoveCarClick"></MenuItem>
             </MenuItem>
             <MenuItem Header="Данные">
                 <MenuItem Header="Обновить" Name="RefreshMenuItem" Click="RefreshMenuItem_OnClick"></MenuItem>

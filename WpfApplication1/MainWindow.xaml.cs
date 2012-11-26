@@ -103,5 +103,13 @@ namespace WpfApplication1
             var serializer = new Serializer<List<ModelDetails>>();
             serializer.SerializeObject("cars.dat", list);
         }
+
+        private void RemoveCarClick(object sender, RoutedEventArgs e)
+        {
+            var dialog = new RemoveCarDialog(EyedModels.Items);
+            bool? res = dialog.ShowDialog();
+            if (res.HasValue && res.Value)
+                EyedModels.Items.Remove(dialog.CarToDelete);
+        }
     }
 }
