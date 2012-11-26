@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using WpfApplication1.CustomControls;
 using WpfApplication1.Dialogs;
 using WpfApplication1.Static;
@@ -107,6 +108,7 @@ namespace WpfApplication1
         private void RemoveCarClick(object sender, RoutedEventArgs e)
         {
             var dialog = new RemoveCarDialog(EyedModels.Items);
+            SellingCars.ItemsSource = null;
             bool? res = dialog.ShowDialog();
             if (res.HasValue && res.Value)
                 EyedModels.Items.Remove(dialog.CarToDelete);
