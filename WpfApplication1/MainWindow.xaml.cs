@@ -32,7 +32,8 @@ namespace WpfApplication1
                         var obj = serializer.DeSerializeObject("cars.dat");
                         EyedModels.Dispatcher.BeginInvoke(new Action(delegate
                             {
-                                EyedModels.ItemsSource = obj;
+                                foreach (var modelDetails in obj)
+                                    EyedModels.Items.Add(modelDetails);
                             }));
                     }
                     catch
@@ -90,6 +91,7 @@ namespace WpfApplication1
                 EyedModelsInitListBox(sell);
                 EyedModels.Items.Refresh();
             }
+            MessageBox.Show("Подгрузка закончилась");
         }
 
         private void MainWindow_OnClosing(object sender, CancelEventArgs e)
