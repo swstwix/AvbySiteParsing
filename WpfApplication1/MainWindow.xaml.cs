@@ -109,6 +109,7 @@ namespace WpfApplication1
         {
             var dialog = new RemoveCarDialog(EyedModels.Items);
             SellingCars.ItemsSource = null;
+            CarDetails.Children.Clear();
             bool? res = dialog.ShowDialog();
             if (res.HasValue && res.Value)
                 EyedModels.Items.Remove(dialog.CarToDelete);
