@@ -14,26 +14,31 @@ namespace WebApi.Controllers
     {
         private ICarsApi carsApi = new AvParser();
 
+        [HttpGet]
         public IDictionary<string, int> Brands()
         {
             return carsApi.Brands();
         }
 
+        [HttpGet]
         public IDictionary<string, int> Models(string brandName)
         {
             return carsApi.Models(brandName);
         }
 
+        [HttpGet]
         public CarDetails[] Selling(string brand, string model)
         {
             return carsApi.Selling(brand, model);
         }
 
+        [HttpGet]
         public int CountPages(int brandId, int countId)
         {
             return carsApi.CountPages(brandId, countId);
         }
 
+        [HttpGet]
         public ModelDetails MergeTo(ModelDetails sell)
         {
             return carsApi.MergeTo(sell);
