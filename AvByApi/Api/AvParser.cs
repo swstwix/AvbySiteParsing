@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Text;
 using Domain.Api;
 using WpfApplication1.Static;
 
@@ -19,6 +20,8 @@ namespace AvByApi
         private const string avCountTemplate =
             "http://av.by/public/parameters.php?event=Number_PreSearch&category_parent[0]={0}&category_id[0]={1}";
 
+        WebClient client = new WebClient() { Encoding = Encoding.GetEncoding("windows-1251") };
+
         private IDictionary<string, int> brands;
 
         public  IDictionary<string, int> Brands()
@@ -26,7 +29,6 @@ namespace AvByApi
             if (brands != null)
                 return brands;
 
-            var client = new WebClient();
             string page = client.DownloadString(avUrl);
 
             brands = ParsingRegexHelper.AllBrand(page);
@@ -36,7 +38,6 @@ namespace AvByApi
 
         public  IDictionary<string, int> Models(string brandName)
         {
-            var client = new WebClient();
             string page = client.DownloadString(string.Format(avModelPattern, Brands()[brandName]));
 
             return ParsingRegexHelper.AllModels(page);
@@ -62,7 +63,6 @@ namespace AvByApi
 
         public  int CountPages(int brandId, int countId)
         {
-            var client = new WebClient();
             var page = client.DownloadString(string.Format(avCountTemplate, brandId, countId));
             return int.Parse(page);
         }
@@ -70,7 +70,6 @@ namespace AvByApi
         private  IEnumerable<CarDetails> GetCarDetailsByUrl(string url)
         {
             var list = new List<CarDetails>();
-            var client = new WebClient();
             var html = client.DownloadString(url);
 
             var count = ParsingRegexHelper.Count(html);
