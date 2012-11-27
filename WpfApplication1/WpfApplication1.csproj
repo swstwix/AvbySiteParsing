@@ -36,6 +36,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -59,6 +60,7 @@
     <Compile Include="Dialogs\RemoveCarDialog.xaml.cs">
       <DependentUpon>RemoveCarDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IAppHarborApi.cs" />
     <Compile Include="Serializer\Serizlizer.cs" />
     <Page Include="CustomControls\SellingCarDetails.xaml">
       <SubType>Designer</SubType>

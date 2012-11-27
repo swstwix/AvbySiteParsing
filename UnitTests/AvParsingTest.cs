@@ -5,6 +5,7 @@ using System.Text;
 using AvByApi;
 using Domain.Api;
 using NUnit.Framework;
+using WpfApplication1;
 using WpfApplication1.Static;
 
 namespace UnitTests
@@ -12,7 +13,7 @@ namespace UnitTests
     [TestFixture]
     public class AvParsingTest
     {
-        private ICarsApi carsApi = new AvParser();
+        private ICarsApi carsApi = new AppHarborApi();
 
         [Test]
         public void WebClientWorks()
@@ -57,6 +58,13 @@ namespace UnitTests
         }
 
         [Test]
+        public void UralModelsDataExists()
+        {
+            CollectionAssert.Contains(carsApi.Models("ВАЗ"),
+                                      new KeyValuePair<string, int>("2106", 1287));
+        }
+
+        [Test]
         public void UralDataExists()
         {
             CollectionAssert.Contains(carsApi.Brands(), new KeyValuePair<string, int>("Урал", 1569));
@@ -73,7 +81,7 @@ namespace UnitTests
         public void TestImageUrl()
         {
             var car = carsApi.Selling("Alfa Romeo", "145").First();
-            StringAssert.Contains("http://static.av.by/public/public_image_icon", car.ImageHref);
+            StringAssert.Contains("http://static.av.by/public", car.ImageHref);
         }
 
         [Test]
