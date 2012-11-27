@@ -31,7 +31,7 @@ namespace UnitTests
         public void AvBySiteContainsModelWorld()
         {
             var s = new WebClient().DownloadString("http://av.by");
-            StringAssert.Contains("Модель", s);
+            StringAssert.Contains("Модель", s, "Не работает с русскими");
         }
 
         [Test]
