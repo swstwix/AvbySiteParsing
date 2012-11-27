@@ -31,7 +31,7 @@ namespace WebApi.Controllers
 
         public JsonResult CountPages(int brandId, int countId)
         {
-            return Json(carsApi.CountPages(brandId, countId));
+            return Json(carsApi.CountPages(brandId, countId), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult MergeTo(ModelDetails sell)
