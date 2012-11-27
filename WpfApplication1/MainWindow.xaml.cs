@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using AvByApi;
-using AvByApi.Services;
+using Domain.Api;
 using WpfApplication1.CustomControls;
 using WpfApplication1.Dialogs;
 using WpfApplication1.Static;

@@ -4,7 +4,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using AvByApi;
-using AvByApi.Services;
+using Domain.Api;
 using WpfApplication1.Static;
 
 namespace WpfApplication1.Dialogs

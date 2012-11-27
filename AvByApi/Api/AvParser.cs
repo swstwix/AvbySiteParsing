@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using AvByApi.Services;
+using Domain.Api;
 using WpfApplication1.Static;
 
 namespace AvByApi
@@ -103,7 +103,7 @@ namespace AvByApi
             return list;
         }
 
-        public  void MergeTo(ModelDetails sell)
+        public  ModelDetails MergeTo(ModelDetails sell)
         {
             sell.Cars = sell.Cars.Where(x => x.State != CarState.Deleted).ToArray();
 
@@ -151,6 +151,8 @@ namespace AvByApi
             newArray.AddRange(sell.Cars);
             sell.Cars = newArray.ToArray();
             sell.Count = sell.Cars.Length;
+
+            return sell;
         }
     }
 }
