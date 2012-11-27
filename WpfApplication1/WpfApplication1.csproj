@@ -60,11 +60,6 @@
       <DependentUpon>RemoveCarDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Serializer\Serizlizer.cs" />
-    <Compile Include="Static\AvParser.cs" />
-    <Compile Include="Static\CarDetails.cs" />
-    <Compile Include="Static\CarState.cs" />
-    <Compile Include="Static\ModelDetails.cs" />
-    <Compile Include="Static\ParsingRegexHelper.cs" />
     <Page Include="CustomControls\SellingCarDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -119,6 +114,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AvByApi\AvByApi.csproj">
+      <Project>{aafe237d-4e27-4923-9107-03896f67f5bd}</Project>
+      <Name>AvByApi</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

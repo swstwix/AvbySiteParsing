@@ -45,8 +45,7 @@ namespace UnitTests
         public void TestImageUrl()
         {
             var car = AvParser.Selling("Alfa Romeo", "145").First();
-            Assert.AreEqual("http://static.av.by/public/public_image_icon/003/89/28/public_3892876_1i_9261c169b1e1.jpg",
-                            car.ImageHref);
+            StringAssert.Contains("http://static.av.by/public/public_image_icon", car.ImageHref);
         }
 
         [Test]
