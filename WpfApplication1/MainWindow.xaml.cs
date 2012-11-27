@@ -6,6 +6,8 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using AvByApi;
+using AvByApi.Services;
 using WpfApplication1.CustomControls;
 using WpfApplication1.Dialogs;
 using WpfApplication1.Static;
@@ -18,12 +20,14 @@ namespace WpfApplication1
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ICarsApi carsApi = new AvParser();
+
         public MainWindow()
         {
             InitializeComponent();
             ThreadPool.QueueUserWorkItem(delegate(Object state)
                 {
-                    var x = AvParser.Brands();
+                    var x = carsApi.Brands();
                 });
             ThreadPool.QueueUserWorkItem(delegate(Object state)
                 {
@@ -46,7 +50,7 @@ namespace WpfApplication1
 
         private void AddCarMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            var dialog = new AddCarDialog {Owner = this};
+            var dialog = new AddCarDialog (carsApi){Owner = this};
             bool? res = dialog.ShowDialog();
             if (res.HasValue && res.Value)
             {
@@ -65,7 +69,7 @@ namespace WpfApplication1
         {
             var selected = (ModelDetails) obj;
             if (selected.Cars == null)
-                selected.Cars = AvParser.Selling(selected.Brand, selected.Model);
+                selected.Cars = carsApi.Selling(selected.Brand, selected.Model);
             SellingCars.Dispatcher.BeginInvoke(new Action<ModelDetails>(EyedModelsInitListBox), selected);
         }
 
@@ -88,7 +92,7 @@ namespace WpfApplication1
             foreach (var selling in EyedModels.Items)
             {
                 var sell = (ModelDetails) selling;
-                AvParser.MergeTo(sell);
+                carsApi.MergeTo(sell);
                 EyedModelsInitListBox(sell);
                 EyedModels.Items.Refresh();
             }

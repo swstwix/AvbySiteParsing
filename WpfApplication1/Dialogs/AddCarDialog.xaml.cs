@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using AvByApi;
+using AvByApi.Services;
 using WpfApplication1.Static;
 
 namespace WpfApplication1.Dialogs
@@ -15,16 +17,18 @@ namespace WpfApplication1.Dialogs
         public ModelDetails ModelDetails;
         private IDictionary<string, int> brands;
         private IDictionary<string, int> models;
+        private readonly ICarsApi carsApi;
 
-        public AddCarDialog()
+        public AddCarDialog(ICarsApi carsApi)
         {
+            this.carsApi = carsApi;
             InitializeComponent();
             ThreadPool.QueueUserWorkItem(LoadBrandData);
         }
 
         public void LoadBrandData(object obj)
         {
-            brands = AvParser.Brands();
+            brands = carsApi.Brands();
             CompleteLabel.Dispatcher.BeginInvoke(new Action(LoadStarted));
             BrandComboBox.Dispatcher.BeginInvoke(new Action(IntializeBrandComboBox));
             CompleteLabel.Dispatcher.BeginInvoke(new Action(LoadComplited));
@@ -33,7 +37,7 @@ namespace WpfApplication1.Dialogs
         public void LoadMarkData(object obj)
         {
             CompleteLabel.Dispatcher.BeginInvoke(new Action(LoadStarted));
-            models = AvParser.Models(obj.ToString());
+            models = carsApi.Models(obj.ToString());
             BrandComboBox.Dispatcher.BeginInvoke(new Action<IDictionary<string,int>>(InitializeModelComboBox), models);
             CompleteLabel.Dispatcher.BeginInvoke(new Action(LoadComplited));
         }
@@ -50,7 +54,7 @@ namespace WpfApplication1.Dialogs
 
         private void IntializeBrandComboBox()
         {
-            foreach (var pair in AvParser.Brands())
+            foreach (var pair in carsApi.Brands())
             {
                 BrandComboBox.Items.Add(pair.Key);
             }
@@ -82,7 +86,7 @@ namespace WpfApplication1.Dialogs
                             BrandId = brands[BrandComboBox.SelectedItem.ToString()],
                             ModelId = models[ModelComboBox.SelectedItem.ToString()],
                         };
-                    ModelDetails.Count = AvParser.CountPages(ModelDetails.BrandId, ModelDetails.ModelId);
+                    ModelDetails.Count = carsApi.CountPages(ModelDetails.BrandId, ModelDetails.ModelId);
                     DialogResult = true;
                     return;
                 }

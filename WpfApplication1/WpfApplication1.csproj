@@ -120,6 +120,10 @@
       <Project>{aafe237d-4e27-4923-9107-03896f67f5bd}</Project>
       <Name>AvByApi</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{DA3B4457-19AA-4A6C-95AC-1440250BD56C}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

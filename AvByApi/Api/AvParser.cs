@@ -1,12 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Text.RegularExpressions;
+using AvByApi.Services;
+using WpfApplication1.Static;
 
-namespace WpfApplication1.Static
+namespace AvByApi
 {
-    public class AvParser
+
+    public class AvParser : ICarsApi
     {
         private const string avUrl = "http://av.by";
         private const string avModelPattern =
@@ -18,9 +19,9 @@ namespace WpfApplication1.Static
         private const string avCountTemplate =
             "http://av.by/public/parameters.php?event=Number_PreSearch&category_parent[0]={0}&category_id[0]={1}";
 
-        private static IDictionary<string, int> brands;
+        private IDictionary<string, int> brands;
 
-        public static IDictionary<string, int> Brands()
+        public  IDictionary<string, int> Brands()
         {
             if (brands != null)
                 return brands;
@@ -33,7 +34,7 @@ namespace WpfApplication1.Static
             return brands;
         }
 
-        public static IDictionary<string, int> Models(string brandName)
+        public  IDictionary<string, int> Models(string brandName)
         {
             var client = new WebClient();
             string page = client.DownloadString(string.Format(avModelPattern, Brands()[brandName]));
@@ -41,7 +42,7 @@ namespace WpfApplication1.Static
             return ParsingRegexHelper.AllModels(page);
         }
 
-        public static CarDetails[] Selling(string brand, string model)
+        public  CarDetails[] Selling(string brand, string model)
         {
             var brandId = Brands()[brand];
             var modelId = Models(brand)[model];
@@ -59,14 +60,14 @@ namespace WpfApplication1.Static
             return list.ToArray();
         }
 
-        public static int CountPages(int brandId, int countId)
+        public  int CountPages(int brandId, int countId)
         {
             var client = new WebClient();
             var page = client.DownloadString(string.Format(avCountTemplate, brandId, countId));
             return int.Parse(page);
         }
 
-        private static IEnumerable<CarDetails> GetCarDetailsByUrl(string url)
+        private  IEnumerable<CarDetails> GetCarDetailsByUrl(string url)
         {
             var list = new List<CarDetails>();
             var client = new WebClient();
@@ -102,7 +103,7 @@ namespace WpfApplication1.Static
             return list;
         }
 
-        public static void MergeTo(ModelDetails sell)
+        public  void MergeTo(ModelDetails sell)
         {
             sell.Cars = sell.Cars.Where(x => x.State != CarState.Deleted).ToArray();
 
