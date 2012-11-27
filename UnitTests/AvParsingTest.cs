@@ -21,6 +21,13 @@ namespace UnitTests
         }
 
         [Test]
+        public void WebClientWorksWithAvBy()
+        {
+            var x = new WebClient().DownloadString("http://av.by");
+            Assert.NotNull(x);
+        }
+
+        [Test]
         public void AlfaRomeoModelsDataExists()
         {
             CollectionAssert.Contains(carsApi.Models("Alfa Romeo"), new KeyValuePair<string, int>("146", 3));
