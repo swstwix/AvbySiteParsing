@@ -3,45 +3,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web.Http;
+using System.Web.Mvc;
 using AvByApi;
 using Domain.Api;
 using WpfApplication1.Static;
 
 namespace WebApi.Controllers
 {
-    public class CarsController : ApiController, ICarsApi
+    public class CarsController : Controller
     {
         private ICarsApi carsApi = new AvParser();
 
-        [HttpGet]
-        public IDictionary<string, int> Brands()
+        public JsonResult Brands()
         {
-            return carsApi.Brands();
+            return Json(carsApi.Brands(), JsonRequestBehavior.AllowGet);
         }
 
-        [HttpGet]
-        public IDictionary<string, int> Models(string brandName)
+        public JsonResult Models(string brandName)
         {
-            return carsApi.Models(brandName);
+            return Json(carsApi.Models(brandName), JsonRequestBehavior.AllowGet);
         }
 
-        [HttpGet]
-        public CarDetails[] Selling(string brand, string model)
+        public JsonResult Selling(string brand, string model)
         {
-            return carsApi.Selling(brand, model);
+            return Json(carsApi.Selling(brand, model), JsonRequestBehavior.AllowGet);
         }
 
-        [HttpGet]
-        public int CountPages(int brandId, int countId)
+        public JsonResult CountPages(int brandId, int countId)
         {
-            return carsApi.CountPages(brandId, countId);
+            return Json(carsApi.CountPages(brandId, countId));
         }
 
-        [HttpGet]
-        public ModelDetails MergeTo(ModelDetails sell)
+        public JsonResult MergeTo(ModelDetails sell)
         {
-            return carsApi.MergeTo(sell);
+            return Json(carsApi.MergeTo(sell), JsonRequestBehavior.AllowGet);
         }
     }
 }

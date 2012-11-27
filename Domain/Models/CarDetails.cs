@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Serialization;
 
 namespace WpfApplication1.Static
 {
@@ -24,7 +25,7 @@ namespace WpfApplication1.Static
 
         #region Statistics data
 
-        public CarState State;
+        public CarState State { get; set; }
         public List<int> PricesHistrory { get; set; }
         public Brush Color { get
         {
