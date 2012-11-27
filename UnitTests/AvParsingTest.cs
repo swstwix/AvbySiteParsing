@@ -28,6 +28,13 @@ namespace UnitTests
         }
 
         [Test]
+        public void AvBySiteContainsModelWorld()
+        {
+            var s = new WebClient().DownloadString("http://av.by");
+            StringAssert.Contains("Модель", s);
+        }
+
+        [Test]
         public void AlfaRomeoModelsDataExists()
         {
             CollectionAssert.Contains(carsApi.Models("Alfa Romeo"), new KeyValuePair<string, int>("146", 3));
