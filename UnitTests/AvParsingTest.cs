@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Text;
 using AvByApi;
 using Domain.Api;
 using NUnit.Framework;
@@ -30,7 +31,8 @@ namespace UnitTests
         [Test]
         public void AvBySiteContainsModelWorld()
         {
-            var s = new WebClient().DownloadString("http://av.by");
+            var client = new WebClient() { Encoding = Encoding.GetEncoding("windows-1251") };
+            var s = client.DownloadString("http://av.by");
             StringAssert.Contains("Модель", s, "Не работает с русскими");
         }
 
