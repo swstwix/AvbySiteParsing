@@ -17,6 +17,7 @@ namespace UnitTests
         public void WebClientWorks()
         {
             var x = new WebClient().DownloadString("http://google.by");
+            Assert.NotNull(x);
         }
 
         [Test]
