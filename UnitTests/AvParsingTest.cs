@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using AvByApi;
 using Domain.Api;
 using NUnit.Framework;
@@ -11,6 +12,12 @@ namespace UnitTests
     public class AvParsingTest
     {
         private ICarsApi carsApi = new AvParser();
+
+        [Test]
+        public void WebClientWorks()
+        {
+            var x = new WebClient().DownloadString("http://google.by");
+        }
 
         [Test]
         public void AlfaRomeoModelsDataExists()
