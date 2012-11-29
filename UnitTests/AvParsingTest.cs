@@ -13,7 +13,7 @@ namespace UnitTests
     [TestFixture]
     public class AvParsingTest
     {
-        private ICarsApi carsApi = new AppHarborApi();
+        private ICarsApi carsApi = new AvParser();
 
         [Test]
         public void WebClientWorks()
@@ -33,7 +33,7 @@ namespace UnitTests
         public void AvBySiteContainsModelWorld()
         {
             var client = new WebClient() { Encoding = Encoding.GetEncoding("windows-1251") };
-            var s = client.DownloadString("http://av.by");
+            var s = client.DownloadString("http://av.by/?event=Show_Main");
             StringAssert.Contains("Модель", s, "Не работает с русскими");
         }
 
@@ -41,6 +41,12 @@ namespace UnitTests
         public void AlfaRomeoModelsDataExists()
         {
             CollectionAssert.Contains(carsApi.Models("Alfa Romeo"), new KeyValuePair<string, int>("146", 3));
+        }
+
+        [Test]
+        public void ReclamTest()
+        {
+            Assert.IsTrue(carsApi.Brands().Any());
         }
 
         [Test]

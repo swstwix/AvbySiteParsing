@@ -10,7 +10,7 @@ namespace AvByApi
 
     public class AvParser : ICarsApi
     {
-        private const string avUrl = "http://av.by";
+        private const string avUrl = "http://av.by/?event=Show_Main";
         private const string avModelPattern =
             "http://av.by/public/search.php?event=Search&category_parent%5B0%5D={0}&category_id%5B0%5D=0&year_id=0&year_id_max=0&engine_type_id2=1&engine_type_all=1&body_type_id=0&transmission_id=0&price_value=0&price_value_max=0&currency_id=0&country_id=0&city_id2=0&order_id=0&submit_presearch=%CF%EE%EA%E0%E7%E0%F2%FC%3A+9";
 
