@@ -20,15 +20,11 @@ namespace WpfApplication1
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ICarsApi carsApi = new AvParser();
+        private readonly ICarsApi carsApi = new AvParser();
 
         public MainWindow()
         {
             InitializeComponent();
-            ThreadPool.QueueUserWorkItem(delegate(Object state)
-                {
-                    var x = carsApi.Brands();
-                });
             ThreadPool.QueueUserWorkItem(delegate(Object state)
                 {
                     try
@@ -61,6 +57,8 @@ namespace WpfApplication1
 
         private void EyedModels_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (e.AddedItems.Count == 0)
+                return;
             var selected = (ModelDetails) e.AddedItems[0];
             ThreadPool.QueueUserWorkItem(LoadSellingForModel, selected);
         }
